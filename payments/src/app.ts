@@ -11,7 +11,8 @@ app.use(json());
 app.use(
     cookieSession({
         signed: false,                              // This turns off encryption, since JWT is already encrypted
-        secure: process.env.NODE_ENV !== 'test'     // Means that user is using an HTTPS connection
+        // secure: process.env.NODE_ENV !== 'test'     // Means that user is using an HTTPS connection
+        secure: false
     })
 );
 app.use(currentUser);
