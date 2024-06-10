@@ -13,6 +13,7 @@ import { app } from '../app';
 
 //  Another option in case I run into an error that looks like this:
 //  Element implicitly has an 'any' type because type 'typeof globalThis' has no index signature.ts(7017)
+
  declare global {
      var signup: () => Promise<string[]>;
  }
@@ -43,6 +44,7 @@ afterAll(async () => {
     await mongoose.connection.close();
 });
 
+// @ts-ignore
 global.signup = async () => {
     const email = 'test@test.com';
     const password = 'password';
