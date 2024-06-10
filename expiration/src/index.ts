@@ -3,6 +3,8 @@ import { OrderCreatedListener } from "./events";
 
 const start = async () => {
 
+    console.log('Starting expiration...');
+
     if (!process.env.NATS_CLUSTER_ID) {
         throw new Error("NATS_CLUSTER_ID must be defined");
     }
