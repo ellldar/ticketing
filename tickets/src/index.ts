@@ -7,6 +7,8 @@ import { OrderCancelledListener, OrderCreatedListener } from "./events";
 
 const start = async () => {
 
+    console.log('Starting...');
+
     CheckEnvVariables();
 
     try {
