@@ -53,5 +53,6 @@ global.signup = async (): Promise<string[] | null> => {
         .send({ email, password })
         .expect(201);
 
-    return response.get('Set-Cookie') || null;      // We are returning a cookie
+    const cookie = response.get('Set-Cookie');      // We are returning a cookie
+    return cookie ? cookie : null;
 };
