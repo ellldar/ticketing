@@ -3,19 +3,20 @@ import mongoose from 'mongoose';
 import request from 'supertest';
 import { app } from '../app';
 
-declare global {
-    namespace NodeJS {
-        export interface Global {
-            signup(): Promise<string[]>;
-        }
-    }
-}
+// declare global {
+//     namespace NodeJS {
+//         export interface Global {
+//             signup(): Promise<string[]>;
+//         }
+//     }
+// }
 
 //  Another option in case I run into an error that looks like this:
 //  Element implicitly has an 'any' type because type 'typeof globalThis' has no index signature.ts(7017)
-//  declare global {
-//      var signin: () => Promise<string[]>;
-//  }
+
+ declare global {
+     var signup: () => Promise<string[] | null>;
+ }
 
 let mongo: any;
 
@@ -43,7 +44,7 @@ afterAll(async () => {
     await mongoose.connection.close();
 });
 
-global.signup = async () => {
+global.signup = async (): Promise<string[] | null> => {
     const email = 'test@test.com';
     const password = 'password';
 
@@ -52,5 +53,6 @@ global.signup = async () => {
         .send({ email, password })
         .expect(201);
 
-    return response.get('Set-Cookie') || null;      // We are returning a cookie
+    const cookie = response.get('Set-Cookie');      // We are returning a cookie
+    return cookie ? cookie : null;
 };

@@ -8,6 +8,8 @@ import { PaymentCreatedListener } from "./events/listeners/payment-created-liste
 
 const start = async () => {
 
+    console.log('Starting....');
+
     CheckEnvVariables();
 
     try {

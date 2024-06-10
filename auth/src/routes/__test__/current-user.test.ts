@@ -6,7 +6,7 @@ it('responds with details about the current user', async () => {
 
     const response = await request(app)
         .get('/api/users/currentuser')
-        .set('Cookie', cookie)
+        .set('Cookie', cookie ? cookie : [''])
         .send()
         .expect(200);
 

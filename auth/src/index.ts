@@ -4,6 +4,8 @@ import { DatabaseConnectionError } from "@supatai/common";
 import { app } from "./app";
 const start = async () => {
 
+    console.log('Starting up....');
+
     // Check if process.env.JWT_KEY exists
     if (!process.env.JWT_KEY) {
         throw new Error("JWT_KEY must be defined");
