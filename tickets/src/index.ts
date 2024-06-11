@@ -7,7 +7,7 @@ import { OrderCancelledListener, OrderCreatedListener } from "./events";
 
 const start = async () => {
 
-    console.log('Starting tickets...');
+    console.log('Starting up service...');
 
     CheckEnvVariables();
 
