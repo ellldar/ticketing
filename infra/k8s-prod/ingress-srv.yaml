@@ -7,7 +7,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: www.fabao.kg
+    - host: http://www.fabao.kg
       http:
         paths:
           - path: /api/payments/?(.*)
