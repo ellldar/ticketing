@@ -51,7 +51,7 @@ kind: Service
 metadata:
   annotations:
     service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "false"
-    service.beta.kubernetes.io/do-loadbalancer-hostname: 'www.fabao.kg'
+    service.beta.kubernetes.io/do-loadbalancer-hostname: 'fabao.kg'
   labels:
     app.kubernetes.io/component: controller
     app.kubernetes.io/instance: ingress-nginx
