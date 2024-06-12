@@ -4,8 +4,7 @@ export default ({ req }) => {
 	if (typeof window === 'undefined') {
 		// We are on the SERVER SIDE
 		return axios.create({
-			baseURL: 'http://www.fabao.kg/',
-			// baseURL: 'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local',
+			baseURL: process.env.BASE_URL,
 			headers: req.headers,
 		});
 	} else {
