@@ -11,9 +11,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps: 
-      - uses: actions/checkout@v2
-      - uses: digitalocean/action-doctl@v2
+      - uses: actions/checkout@v3
+      - uses: scaleway/action-scw@v0
         with:
-          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-      - run: doctl kubernetes cluster kubeconfig save ticketing
+          access-key: ${{ secrets.SCW_ACCESS_KEY }}
+          secret-key: ${{ secrets.SCW_SECRET_KEY }}
+          default-project-id: ${{ secrets.SCW_DEFAULT_PROJECT_ID }}
+          default-organization-id: ${{ secrets.SCW_DEFAULT_ORGANIZATION_ID }}
+      - run: scw k8s kubeconfig get fabao-kgz > ~/.kube/config
       - run: kubectl apply -f infra/k8s && kubectl apply -f infra/k8s-prod
