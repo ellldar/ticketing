@@ -20,6 +20,5 @@ jobs:
           secret-key: ${{ secrets.SCW_SECRET_KEY }}
           default-project-id: ${{ secrets.SCW_DEFAULT_PROJECT_ID }}
           default-organization-id: ${{ secrets.SCW_DEFAULT_ORGANIZATION_ID }}
-      - run: echo ${{ secrets.SCW_CLUSTER_ID }}
-      - run: scw k8s kubeconfig get --cluster-id ${{ secrets.SCW_CLUSTER_ID }} > ~/.kube/config
+      - run: scw k8s kubeconfig get --cluster-id 4654ab59-2ae1-46ce-a1e5-2328b81b847e > ~/.kube/config
       - run: kubectl apply -f infra/k8s && kubectl apply -f infra/k8s-prod
