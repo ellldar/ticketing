@@ -18,8 +18,15 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       - run: docker push ellldar/auth
-      - uses: digitalocean/action-doctl@v2
+      - uses: scaleway/action-scw@v0
+        id: cli
         with:
-          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-      - run: doctl kubernetes cluster kubeconfig save ticketing
+          save-config: true
+          export-config: true
+          access-key: ${{ secrets.SCW_ACCESS_KEY }}
+          secret-key: ${{ secrets.SCW_SECRET_KEY }}
+          default-project-id: ${{ secrets.SCW_DEFAULT_PROJECT_ID }}
+          default-organization-id: ${{ secrets.SCW_DEFAULT_ORGANIZATION_ID }}
+      - run: mkdir -p ~/.kube/
+      - run: scw k8s kubeconfig get ${{ secrets.SCW_CLUSTER_ID }} > ~/.kube/config
       - run: kubectl rollout restart deployment auth-depl
