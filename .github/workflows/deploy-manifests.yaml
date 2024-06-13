@@ -13,6 +13,7 @@ jobs:
     steps: 
       - uses: actions/checkout@v3
       - uses: scaleway/action-scw@v0
+        id: cli
         with:
           save-config: true
           export-config: true
